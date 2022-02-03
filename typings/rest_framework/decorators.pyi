@@ -1,6 +1,7 @@
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Type, TypeVar, Union
 
 from django.http.response import HttpResponseBase
+from django.db.models import QuerySet
 from typing_extensions import Literal, Protocol
 
 from rest_framework.authentication import BaseAuthentication
@@ -114,4 +115,6 @@ def action(
     filter_backends: Sequence[Type[BaseFilterBackend]] = ...,
     lookup_field: str = ...,
     lookup_url_kwarg: Optional[str] = ...,
+    queryset: QuerySet[Any] = ...,
+    **kwargs: Any,
 ) -> Callable[[_F], _F]: ...
