@@ -28,6 +28,7 @@ django-types = "^0.3.1"
 django = "^3.1"
 flake8 = "^3.8"
 flake8-pyi = "^20.10"
+djangorestframework = "^3.12"
 
 [tool.black]
 line-length = 120
