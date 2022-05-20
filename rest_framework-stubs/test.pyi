@@ -209,10 +209,8 @@ class APISimpleTestCase(testcases.SimpleTestCase):
     client_class: APIClient = ...
     client: APIClient
 
-
 class APILiveServerTestCase(testcases.LiveServerTestCase):
     client_class: APIClient = ...
     client: APIClient
-
 
 class URLPatternsTestCase(testcases.SimpleTestCase): ...
