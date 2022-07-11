@@ -7,7 +7,7 @@ from typing_extensions import Literal, Protocol
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.filters import BaseFilterBackend
 from rest_framework.parsers import BaseParser
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import _PermissionClass
 from rest_framework.renderers import BaseRenderer
 from rest_framework.schemas.inspectors import ViewInspector
 from rest_framework.serializers import BaseSerializer
@@ -90,7 +90,7 @@ _ThrottleClassesParam = Sequence[Type[BaseThrottle]]
 
 def throttle_classes(throttle_classes: _ThrottleClassesParam) -> Callable[[_F], _F]: ...
 
-_PermClassesParam = Sequence[Type[BasePermission]]
+_PermClassesParam = Sequence[Type[_PermissionClass]]
 
 def permission_classes(permission_classes: _PermClassesParam) -> Callable[[_F], _F]: ...
 
