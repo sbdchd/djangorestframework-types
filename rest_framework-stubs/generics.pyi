@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Sequence, Type, TypeVar, Union, overload
+from typing import Any, Dict, List, Optional, Protocol, Sequence, Type, TypeVar, Union, overload
 
 from django.db.models import Manager, Model
 from django.db.models.query import QuerySet
@@ -23,7 +23,11 @@ _D = TypeVar("_D", bound=Model)
 
 _Q = TypeVar("_Q", bound=Union[QuerySet[Any], MongoQuerySet[Any]])
 
-class GenericAPIView(views.APIView):
+class UsesQuerySet(Protocol[_MT_co]):
+    def get_queryset(self) -> QuerySet[_MT_co]: ...
+    def get_queryset(self) -> MongoQuerySet[_MT_co]: ...
+
+class GenericAPIView(views.APIView, UsesQuerySet[_MT_co]):
     serializer_class: Optional[Type[BaseSerializer]] = ...
     lookup_field: str = ...
     lookup_url_kwarg: Optional[str] = ...
