@@ -25,6 +25,7 @@ _Q = TypeVar("_Q", bound=Union[QuerySet[Any], MongoQuerySet[Any]])
 
 class UsesQuerySet(Protocol[_MT_co]):
     def get_queryset(self) -> QuerySet[_MT_co]: ...
+    @overload
     def get_queryset(self) -> MongoQuerySet[_MT_co]: ...
 
 class GenericAPIView(views.APIView, UsesQuerySet[_MT_co]):
