@@ -87,6 +87,13 @@ class SupportsToPython(Protocol):
 _DefaultInitial = Union[_VT, Callable[[], _VT], None, _Empty]
 
 class Field(Generic[_VT, _DT, _RP, _IN]):
+    """
+    Type arguments:
+    - _VT: The data type which the validated data will be represented as
+    - _DT: The type which unserialized data will be before being transformed into _VT
+    - _RT: A primitive type (ex., str or int) which can be used to represent the field's serialized and validated value (Similar to repr())
+    - _IN: Type of an instance of this field class
+    """
     allow_null: bool = ...
     default: Optional[_VT] = ...
     default_empty_html: Any = ...
