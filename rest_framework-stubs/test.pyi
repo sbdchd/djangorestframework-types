@@ -11,12 +11,13 @@ from django.test.client import RequestFactory as DjangoRequestFactory
 from rest_framework.authtoken.models import Token
 from rest_framework.request import Request
 from rest_framework.response import Response
+from urllib3._collections import HTTPHeaderDict
 
 def force_authenticate(
     request: Request, user: Optional[Union[AnonymousUser, AbstractBaseUser]] = ..., token: Optional[Token] = ...
 ) -> None: ...
 
-class HeaderDict(requests.packages.urllib3._collections.HTTPHeaderDict):
+class HeaderDict(HTTPHeaderDict):
     def get_all(self, key: Any, default: Any) -> Any: ...
 
 class MockOriginalResponse:
