@@ -17,7 +17,6 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-black = "^22.10.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.19"
@@ -28,6 +27,7 @@ flake8 = "^3.8"
 flake8-pyi = "^20.10"
 mypy = "^0.982"
 isort = "5.10.1"
+black = "^22.10.0"
 
 [tool.black]
 line-length = 120
