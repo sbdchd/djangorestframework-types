@@ -1,8 +1,7 @@
 from typing import Any, Iterable, List, Optional, Pattern, Sequence, Tuple, Type, Union
 
-from django.db.models.base import Model
-
 import coreapi
+from django.db.models.base import Model
 from rest_framework.request import Request
 from rest_framework.views import APIView
 

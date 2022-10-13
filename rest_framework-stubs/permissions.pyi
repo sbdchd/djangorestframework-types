@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Protocol, Sequence, Type, Union
 
 from django.db.models import Model, QuerySet
-
 from rest_framework.views import APIView
 
 SAFE_METHODS: Sequence[str]

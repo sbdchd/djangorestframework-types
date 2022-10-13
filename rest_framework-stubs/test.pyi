@@ -1,14 +1,13 @@
 from typing import Any, Dict, Mapping, Optional, Union
 
+import coreapi
+import requests
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AnonymousUser
 from django.test import testcases
 from django.test.client import Client as DjangoClient
 from django.test.client import ClientHandler
 from django.test.client import RequestFactory as DjangoRequestFactory
-
-import coreapi
-import requests
 from rest_framework.authtoken.models import Token
 from rest_framework.request import Request
 from rest_framework.response import Response

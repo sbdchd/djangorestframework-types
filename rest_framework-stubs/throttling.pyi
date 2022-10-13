@@ -1,7 +1,6 @@
 from typing import Any, Callable, Dict, List, Optional, Tuple, overload
 
 from django.core.cache.backends.base import BaseCache
-
 from rest_framework.request import Request
 from rest_framework.views import APIView
 

@@ -1,9 +1,18 @@
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Type, TypeVar, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Type,
+    TypeVar,
+    Union,
+)
 
 from django.db.models import QuerySet
 from django.http.response import HttpResponseBase
-from typing_extensions import Literal, Protocol
-
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.filters import _FilterBackendProtocol
 from rest_framework.parsers import BaseParser
@@ -12,6 +21,7 @@ from rest_framework.renderers import BaseRenderer
 from rest_framework.schemas.inspectors import ViewInspector
 from rest_framework.serializers import BaseSerializer
 from rest_framework.throttling import BaseThrottle
+from typing_extensions import Literal, Protocol
 
 class MethodMapper(Dict[str, Any]):
     def __init__(self, action: Callable[..., Any], methods: Sequence[str]) -> None: ...

@@ -25,7 +25,6 @@ from django.http import HttpRequest, QueryDict
 from django.http.request import HttpHeaders
 from django.urls import ResolverMatch
 from django.utils.datastructures import ImmutableList, MultiValueDict
-
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.negotiation import BaseContentNegotiation

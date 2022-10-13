@@ -3,7 +3,6 @@ from typing import Any, List, Optional, Union
 from django import template
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AnonymousUser
-
 from rest_framework.request import Request
 
 register: Any

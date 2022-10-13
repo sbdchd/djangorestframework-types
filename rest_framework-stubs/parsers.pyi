@@ -3,7 +3,6 @@ from typing import IO, Any, Dict, Generic, Mapping, Optional, Type, TypeVar
 from django.core.files.uploadedfile import UploadedFile
 from django.http import QueryDict
 from django.utils.datastructures import MultiValueDict
-
 from rest_framework.renderers import JSONRenderer
 
 _Data = TypeVar("_Data")

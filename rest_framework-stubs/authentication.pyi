@@ -2,7 +2,6 @@ from typing import Any, Optional, Tuple, Type
 
 from django.db.models import Model
 from django.middleware.csrf import CsrfViewMiddleware
-
 from rest_framework.request import Request
 
 def get_authorization_header(request: Request) -> bytes: ...

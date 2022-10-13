@@ -3,7 +3,6 @@ from typing import Any, Callable, Dict, List, NoReturn, Optional, Sequence, Tupl
 from django.http import HttpRequest
 from django.http.response import HttpResponse
 from django.views.generic import View
-
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.negotiation import BaseContentNegotiation
 from rest_framework.parsers import BaseParser

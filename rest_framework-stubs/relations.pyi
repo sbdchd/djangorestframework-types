@@ -1,8 +1,18 @@
 from collections import OrderedDict
-from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Sequence, TypeVar, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    TypeVar,
+    Union,
+)
 
 from django.db.models import Manager, Model, QuerySet
-
 from rest_framework.fields import Field, Option
 from rest_framework.request import Request
 

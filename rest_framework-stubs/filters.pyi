@@ -1,7 +1,18 @@
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Protocol, Sequence, Tuple, TypeVar, Union
+from typing import (
+    Any,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Protocol,
+    Sequence,
+    Tuple,
+    TypeVar,
+    Union,
+)
 
 from django.db.models import Model, QuerySet
-
 from mongoengine import QuerySet as MongoQuerySet
 from rest_framework.request import Request
 from rest_framework.views import APIView

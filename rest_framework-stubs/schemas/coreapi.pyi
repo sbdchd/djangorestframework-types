@@ -1,9 +1,8 @@
 from collections import Counter, OrderedDict
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
-from django.urls import URLPattern, URLResolver
-
 import coreapi
+from django.urls import URLPattern, URLResolver
 from rest_framework.fields import Field
 from rest_framework.request import Request
 from rest_framework.views import APIView

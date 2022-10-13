@@ -1,7 +1,6 @@
 from typing import Any
 
 from django.db.models import Model
-
 from rest_framework.fields import Field
 from rest_framework.views import APIView
 

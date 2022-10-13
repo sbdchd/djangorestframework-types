@@ -29,9 +29,8 @@ from typing import (
 from django.core.files.base import File
 from django.db import models
 from django.forms import ImageField as DjangoImageField  # noqa: F401
-from typing_extensions import Final, Literal
-
 from rest_framework.serializers import BaseSerializer
+from typing_extensions import Final, Literal
 
 class _Empty(Enum):
     sentinel: Literal[0]

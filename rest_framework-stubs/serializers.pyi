@@ -21,8 +21,6 @@ from django.db.models import DurationField as ModelDurationField
 from django.db.models import Manager, QuerySet
 from django.db.models.fields import Field as DjangoModelField
 from django.utils.translation import ugettext_lazy as _
-from typing_extensions import Literal
-
 from rest_framework.exceptions import APIException as APIException
 from rest_framework.exceptions import AuthenticationFailed as AuthenticationFailed
 from rest_framework.exceptions import ErrorDetail as ErrorDetail
@@ -70,7 +68,9 @@ from rest_framework.fields import URLField as URLField
 from rest_framework.fields import UUIDField as UUIDField
 from rest_framework.fields import empty as empty
 from rest_framework.relations import Hyperlink as Hyperlink
-from rest_framework.relations import HyperlinkedIdentityField as HyperlinkedIdentityField
+from rest_framework.relations import (
+    HyperlinkedIdentityField as HyperlinkedIdentityField,
+)
 from rest_framework.relations import HyperlinkedRelatedField as HyperlinkedRelatedField
 from rest_framework.relations import ManyRelatedField as ManyRelatedField
 from rest_framework.relations import PrimaryKeyRelatedField as PrimaryKeyRelatedField
@@ -79,6 +79,7 @@ from rest_framework.relations import SlugRelatedField as SlugRelatedField
 from rest_framework.relations import StringRelatedField as StringRelatedField
 from rest_framework.utils.model_meta import FieldInfo, RelationInfo
 from rest_framework.utils.serializer_helpers import BoundField, ReturnList
+from typing_extensions import Literal
 
 LIST_SERIALIZER_KWARGS: Sequence[str] = ...
 ALL_FIELDS: str = ...
@@ -196,6 +197,7 @@ class ModelSerializer(Serializer, BaseSerializer):
     serializer_choice_field: Field[Any, Any, Any, Any] = ...
     url_field_name: Optional[str] = ...
     instance: Any
+
     class Meta:
         model: Any
         fields: Union[Sequence[str], Literal["__all__"]]

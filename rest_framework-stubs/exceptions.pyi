@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Optional, Sequence, Union
 
 from django.http import HttpRequest, JsonResponse
-
 from rest_framework.renderers import BaseRenderer
 from rest_framework.request import Request
 

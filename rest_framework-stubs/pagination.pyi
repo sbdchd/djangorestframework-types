@@ -14,15 +14,14 @@ from typing import (
     overload,
 )
 
+from coreapi import Field as CoreAPIField
 from django.core.paginator import Page, Paginator
 from django.db.models import Model, QuerySet
-from typing_extensions import TypedDict
-
-from coreapi import Field as CoreAPIField
 from mongoengine import QuerySet as MongoQuerySet
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from typing_extensions import TypedDict
 
 def _positive_int(integer_string: str, strict: bool = ..., cutoff: Optional[int] = ...) -> int: ...
 def _divide_with_ceil(a: int, b: int) -> int: ...
