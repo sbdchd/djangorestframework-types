@@ -3,7 +3,7 @@ from typing import Any, Dict, Mapping, Optional
 from django.template.response import SimpleTemplateResponse
 
 class Response(SimpleTemplateResponse):
-    data: object
+    data: dict[str, Any] | list
     exception: bool = ...
     content_type: Optional[str] = ...
     _headers: Dict[str, tuple[str, str]]

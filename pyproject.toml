@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "djangorestframework-types"
-version = "0.7.1"
+version = "0.8.1"
 description = "Type stubs for Django Rest Framework"
 authors = ["Steve Dignam <steve@dignam.xyz>"]
 repository = "https://github.com/sbdchd/djangorestframework-types"
