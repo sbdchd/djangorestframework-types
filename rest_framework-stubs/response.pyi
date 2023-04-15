@@ -1,20 +1,21 @@
-from typing import Any, Dict, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 from django.template.response import SimpleTemplateResponse
 
 class Response(SimpleTemplateResponse):
     data: object
     exception: bool = ...
-    content_type: Optional[str] = ...
-    _headers: Dict[str, tuple[str, str]]
+    content_type: str | None = ...
+    _headers: dict[str, tuple[str, str]]
     def __init__(
         self,
         data: object = ...,
-        status: Optional[int] = ...,
-        template_name: Optional[str] = ...,
-        headers: Optional[Mapping[str, str]] = ...,
+        status: int | None = ...,
+        template_name: str | None = ...,
+        headers: Mapping[str, str] | None = ...,
         exception: bool = ...,
-        content_type: Optional[str] = ...,
+        content_type: str | None = ...,
     ): ...
     @property
     def rendered_content(self) -> Any: ...

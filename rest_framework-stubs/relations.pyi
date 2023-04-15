@@ -1,15 +1,8 @@
 from collections import OrderedDict
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from typing import (
     Any,
-    Callable,
-    Dict,
-    Iterable,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
     TypeVar,
-    Union,
 )
 
 from django.db.models import Manager, Model, QuerySet
@@ -37,135 +30,135 @@ MANY_RELATION_KWARGS: Sequence[str]
 _MT = TypeVar("_MT", bound=Model)
 
 class RelatedField(Field[Any, Any, Any, Any]):
-    queryset: Optional[Union[QuerySet[Any], Manager[Any]]] = ...
-    html_cutoff: Optional[int] = ...
-    html_cutoff_text: Optional[str] = ...
+    queryset: QuerySet[Any] | Manager[Any] | None = ...
+    html_cutoff: int | None = ...
+    html_cutoff_text: str | None = ...
     def __init__(
         self,
         many: bool = ...,
         allow_empty: bool = ...,
-        queryset: Optional[Union[QuerySet[Any], Manager[Any]]] = ...,
-        html_cutoff: Optional[int] = ...,
+        queryset: QuerySet[Any] | Manager[Any] | None = ...,
+        html_cutoff: int | None = ...,
         html_cutoff_text: str = ...,
         read_only: bool = ...,
         write_only: bool = ...,
         required: bool = ...,
         default: Any = ...,
         initial: Any = ...,
-        source: Union[Callable[..., Any], str] = ...,
-        label: Optional[str] = ...,
+        source: Callable[..., Any] | str = ...,
+        label: str | None = ...,
         help_text: str = ...,
         allow_null: bool = ...,
-        validators: Optional[Sequence[Callable[..., Any]]] = ...,
-        error_messages: Optional[Dict[str, str]] = ...,
-        style: Optional[Dict[str, str]] = ...,
+        validators: Sequence[Callable[..., Any]] | None = ...,
+        error_messages: dict[str, str] | None = ...,
+        style: dict[str, str] | None = ...,
     ): ...
     # mypy doesn't accept the typing below, although its accurate to what this class is doing, hence the ignore
-    def __new__(cls, *args: Any, **kwargs: Any) -> Union[RelatedField, ManyRelatedField]: ...  # type: ignore
+    def __new__(cls, *args: Any, **kwargs: Any) -> RelatedField | ManyRelatedField: ...  # type: ignore
     @classmethod
     def many_init(cls, *args: Any, **kwargs: Any) -> ManyRelatedField: ...
     def get_queryset(self) -> QuerySet[Any]: ...
     def use_pk_only_optimization(self) -> bool: ...
-    def get_choices(self, cutoff: Optional[int] = ...) -> OrderedDict[Any, Any]: ...
+    def get_choices(self, cutoff: int | None = ...) -> OrderedDict[Any, Any]: ...
     @property
     def choices(self) -> OrderedDict[Any, Any]: ...
     @property
     def grouped_choices(self) -> OrderedDict[Any, Any]: ...
     def iter_options(self) -> Iterable[Option]: ...
-    def get_attribute(self, instance: Any) -> Optional[Any]: ...
+    def get_attribute(self, instance: Any) -> Any | None: ...
     def display_value(self, instance: Any) -> str: ...
 
 class StringRelatedField(RelatedField): ...
 
 class PrimaryKeyRelatedField(RelatedField):
-    pk_field: Optional[str] = ...
+    pk_field: str | None = ...
     def __init__(
         self,
         many: bool = ...,
         allow_empty: bool = ...,
-        queryset: Optional[Union[QuerySet[_MT], Manager[_MT]]] = ...,
-        html_cutoff: Optional[int] = ...,
+        queryset: QuerySet[_MT] | Manager[_MT] | None = ...,
+        html_cutoff: int | None = ...,
         html_cutoff_text: str = ...,
         read_only: bool = ...,
         write_only: bool = ...,
         required: bool = ...,
         default: Any = ...,
         initial: Any = ...,
-        source: Union[Callable[..., Any], str] = ...,
-        label: Optional[str] = ...,
+        source: Callable[..., Any] | str = ...,
+        label: str | None = ...,
         help_text: str = ...,
         allow_null: bool = ...,
-        validators: Optional[Sequence[Callable[..., Any]]] = ...,
-        error_messages: Optional[Dict[str, str]] = ...,
-        style: Optional[Dict[str, str]] = ...,
-        pk_field: Optional[Union[str, Field[Any, Any, Any, Any]]] = ...,
+        validators: Sequence[Callable[..., Any]] | None = ...,
+        error_messages: dict[str, str] | None = ...,
+        style: dict[str, str] | None = ...,
+        pk_field: str | Field[Any, Any, Any, Any] | None = ...,
     ): ...
 
 class HyperlinkedRelatedField(RelatedField):
     reverse: Callable[..., Any] = ...
     lookup_field: str = ...
     lookup_url_kwarg: str = ...
-    format: Optional[str] = ...
-    view_name: Optional[str] = ...
+    format: str | None = ...
+    view_name: str | None = ...
     def __init__(
         self,
         many: bool = ...,
         allow_empty: bool = ...,
-        queryset: Optional[Union[QuerySet[_MT], Manager[_MT]]] = ...,
-        html_cutoff: Optional[int] = ...,
+        queryset: QuerySet[_MT] | Manager[_MT] | None = ...,
+        html_cutoff: int | None = ...,
         html_cutoff_text: str = ...,
         read_only: bool = ...,
         write_only: bool = ...,
         required: bool = ...,
         default: Any = ...,
         initial: Any = ...,
-        source: Union[Callable[..., Any], str] = ...,
-        label: Optional[str] = ...,
+        source: Callable[..., Any] | str = ...,
+        label: str | None = ...,
         help_text: str = ...,
         allow_null: bool = ...,
-        validators: Optional[Sequence[Callable[..., Any]]] = ...,
-        error_messages: Optional[Dict[str, str]] = ...,
-        style: Optional[Dict[str, str]] = ...,
-        view_name: Optional[str] = ...,
-        lookup_field: Optional[str] = ...,
-        lookup_url_kwarg: Optional[str] = ...,
-        format: Optional[str] = ...,
+        validators: Sequence[Callable[..., Any]] | None = ...,
+        error_messages: dict[str, str] | None = ...,
+        style: dict[str, str] | None = ...,
+        view_name: str | None = ...,
+        lookup_field: str | None = ...,
+        lookup_url_kwarg: str | None = ...,
+        format: str | None = ...,
     ): ...
     def get_object(self, view_name: str, *view_args: Any, **view_kwargs: Any) -> Any: ...
-    def get_url(self, obj: Model, view_name: str, request: Request, format: str) -> Optional[str]: ...
+    def get_url(self, obj: Model, view_name: str, request: Request, format: str) -> str | None: ...
 
 class HyperlinkedIdentityField(HyperlinkedRelatedField): ...
 
 class SlugRelatedField(RelatedField):
-    slug_field: Optional[str] = ...
+    slug_field: str | None = ...
     def __init__(
         self,
         many: bool = ...,
         allow_empty: bool = ...,
-        queryset: Optional[Union[QuerySet[_MT], Manager[_MT]]] = ...,
-        html_cutoff: Optional[int] = ...,
+        queryset: QuerySet[_MT] | Manager[_MT] | None = ...,
+        html_cutoff: int | None = ...,
         html_cutoff_text: str = ...,
         read_only: bool = ...,
         write_only: bool = ...,
         required: bool = ...,
         default: Any = ...,
-        initial: Union[_MT, Callable[[Any], _MT]] = ...,
-        source: Union[Callable[..., Any], str] = ...,
-        label: Optional[str] = ...,
+        initial: _MT | Callable[[Any], _MT] = ...,
+        source: Callable[..., Any] | str = ...,
+        label: str | None = ...,
         help_text: str = ...,
         allow_null: bool = ...,
-        validators: Optional[Sequence[Callable[..., Any]]] = ...,
-        error_messages: Optional[Dict[str, str]] = ...,
-        style: Optional[Dict[str, str]] = ...,
-        slug_field: Optional[str] = ...,
+        validators: Sequence[Callable[..., Any]] | None = ...,
+        error_messages: dict[str, str] | None = ...,
+        style: dict[str, str] | None = ...,
+        slug_field: str | None = ...,
     ): ...
     def to_internal_value(self, data: Any) -> Any: ...
     def to_representation(self, value: Any) -> str: ...
 
-class ManyRelatedField(Field[Sequence[Any], Sequence[Any], List[Any], Any]):
-    default_empty_html: List[object] = ...
-    html_cutoff: Optional[int] = ...
-    html_cutoff_text: Optional[str] = ...
+class ManyRelatedField(Field[Sequence[Any], Sequence[Any], list[Any], Any]):
+    default_empty_html: list[object] = ...
+    html_cutoff: int | None = ...
+    html_cutoff_text: str | None = ...
     child_relation: RelatedField = ...
     allow_empty: bool = ...
     def __init__(
@@ -174,18 +167,18 @@ class ManyRelatedField(Field[Sequence[Any], Sequence[Any], List[Any], Any]):
         write_only: bool = ...,
         required: bool = ...,
         default: Sequence[Any] = ...,
-        initial: Union[Sequence[Any], Callable[[Any], Sequence[Any]]] = ...,
-        source: Union[Callable[..., Any], str] = ...,
-        label: Optional[str] = ...,
-        help_text: Optional[str] = ...,
-        style: Optional[Dict[str, str]] = ...,
-        error_messages: Optional[Dict[str, str]] = ...,
-        validators: Optional[Sequence[Callable[..., Any]]] = ...,
+        initial: Sequence[Any] | Callable[[Any], Sequence[Any]] = ...,
+        source: Callable[..., Any] | str = ...,
+        label: str | None = ...,
+        help_text: str | None = ...,
+        style: dict[str, str] | None = ...,
+        error_messages: dict[str, str] | None = ...,
+        validators: Sequence[Callable[..., Any]] | None = ...,
         allow_null: bool = ...,
         child_relation: RelatedField = ...,
     ): ...
-    def get_value(self, dictionary: Mapping[Any, Any]) -> List[Any]: ...
-    def get_choices(self, cutoff: Optional[int] = ...) -> OrderedDict[Any, Any]: ...
+    def get_value(self, dictionary: Mapping[Any, Any]) -> list[Any]: ...
+    def get_choices(self, cutoff: int | None = ...) -> OrderedDict[Any, Any]: ...
     @property
     def choices(self) -> OrderedDict[Any, Any]: ...
     @property

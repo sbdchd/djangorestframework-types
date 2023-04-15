@@ -8,11 +8,11 @@ readme = "README.md"
 license = "MIT"
 keywords = ["django", "djangorestframework", "types", "mypy", "stubs"]
 packages = [
-  { include = "rest_framework-stubs" },
-  { include = "coreapi-stubs" },
-  { include = "coreschema-stubs" },
-  { include = "rest_framework_swagger-stubs" },
-  { include = "openapi_codec-stubs" },
+    { include = "rest_framework-stubs" },
+    { include = "coreapi-stubs" },
+    { include = "coreschema-stubs" },
+    { include = "rest_framework_swagger-stubs" },
+    { include = "openapi_codec-stubs" },
 ]
 
 [tool.poetry.dependencies]
@@ -29,13 +29,65 @@ mypy = "^0.982"
 isort = "5.10.1"
 black = "^22.10.0"
 types-requests = "^2.28.11"
+ruff = "^0.0.261"
 
 [tool.black]
 line-length = 120
 include = '\.pyi?$'
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+select = [
+    "E",
+    "F",
+    "TID252",
+    "I001",
+    "T20",
+    "C4",
+    "UP",
+    "N",
+    "BLE",
+    "B",
+    "RET",
+    "SIM",
+    "ARG",
+    "DTZ",
+    "ERA",
+    "RUF",
+]
+ignore = [
+    "E501",   # line length is handled by black
+    "ARG001", # pytest fixtures mess with this
+    "ARG002", # sometimes parent classes require params
+    "N806",   # django migrations violate this a lot
+    "B008",   # type.Argument violates this
+    "N815",   # we mix and match casing in serializers
+    "ARG005", # monkey patching false positive with *args, and **kwargs
+    "N805",   # false positive with pydantic
+    "N802",   # DRF serializers mess with this
+    "RET505", # if, elif, else are fine with returns
+    "RET507", # if, elif, else with continue is also fine
+    "RET508", # if, elif, else with break is also fine
+
+    # okay because we're doing hacky things for our runtime tests
+    "T201",   # we use print for testing
+    "B905",   # allow zip without strict
+    "B018",   # useless expressions useful for type checking
+    "B904",   # allow bad except clauses
+    "N803",   # some APIs have weird names
+    "N818",   # some exceptions have bad names
+    "N801",   # some class names have bad names
+    "ERA001", # false positives
+]
+unfixable = [
+    "ERA001",
+] # we want to check ourselves before we delete commented out code.
+update-check = false
+target-version = "py311"
+
+[tool.ruff.flake8-tidy-imports]
+# Disallow all relative imports.
+ban-relative-imports = "all"
+
 
 [build-system]
 requires = ["poetry>=0.12", "setuptools"]

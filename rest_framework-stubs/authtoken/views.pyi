@@ -1,4 +1,5 @@
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.request import Request

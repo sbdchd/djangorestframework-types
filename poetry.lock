@@ -380,6 +380,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "ruff"
+version = "0.0.261"
+description = "An extremely fast Python linter, written in Rust."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.2"
 description = "A non-validating SQL parser."
@@ -464,7 +472,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "4a3e68632009efb164b3f2d5d7f8a243038f1a5bdc7c974ba031476a90c7cfe4"
+content-hash = "e15881e9676232342c28f6ffd03cc517755faad4b71f7a6d8e9323eed513919a"
 
 [metadata.files]
 appnope = [
@@ -535,6 +543,7 @@ pycodestyle = []
 pyflakes = []
 pygments = []
 pytz = []
+ruff = []
 sqlparse = []
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},

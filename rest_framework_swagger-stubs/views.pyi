@@ -1,7 +1,7 @@
-from typing import Any, Optional
+from typing import Any
 
-from . import renderers as renderers
+from . import renderers as renderers  # noqa: TID252
 
 def get_swagger_view(
-    title: Optional[Any] = ..., url: Optional[Any] = ..., patterns: Optional[Any] = ..., urlconf: Optional[Any] = ...
+    title: Any | None = ..., url: Any | None = ..., patterns: Any | None = ..., urlconf: Any | None = ...
 ) -> Any: ...

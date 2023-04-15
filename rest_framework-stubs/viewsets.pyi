@@ -1,5 +1,6 @@
 from collections import OrderedDict
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from collections.abc import Callable
+from typing import Any
 
 from django.http.response import HttpResponse
 from rest_framework import generics, mixins, views
@@ -12,25 +13,25 @@ _ViewFunc = Callable[..., HttpResponse]
 
 class ViewSetMixin:
     # Classvars assigned in as_view()
-    name: Optional[str]
-    description: Optional[str]
-    suffix: Optional[str]
+    name: str | None
+    description: str | None
+    suffix: str | None
     detail: bool
     basename: str
     # Instance attributes assigned in view wrapper
-    action_map: Dict[str, str]
-    args: Tuple[Any, ...]
-    kwargs: Dict[str, Any]
-    # Assigned in initialize_request()
+    action_map: dict[str, str]
+    args: tuple[Any, ...]
+    kwargs: dict[str, Any]
+    # NOTE: Assigned in initialize_request()
     action: str
     @classmethod
     def as_view(
-        cls, actions: Optional[Dict[str, Union[str, ViewSetAction[Any]]]] = ..., **initkwargs: Any
+        cls, actions: dict[str, str | ViewSetAction[Any]] | None = ..., **initkwargs: Any
     ) -> Callable[..., HttpResponse]: ...
     def initialize_request(self, request: Request, *args: Any, **kwargs: Any) -> Request: ...
     def reverse_action(self, url_name: str, *args: Any, **kwargs: Any) -> str: ...
     @classmethod
-    def get_extra_actions(cls) -> List[_ViewFunc]: ...
+    def get_extra_actions(cls) -> list[_ViewFunc]: ...
     def get_extra_action_url_map(self) -> OrderedDict[str, str]: ...
 
 class ViewSet(ViewSetMixin, views.APIView): ...

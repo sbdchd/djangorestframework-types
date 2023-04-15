@@ -1,4 +1,5 @@
-from typing import Any, Dict, Mapping, Optional, Union
+from collections.abc import Mapping
+from typing import Any, Optional
 
 import coreapi
 import requests
@@ -14,7 +15,7 @@ from rest_framework.response import Response
 from urllib3._collections import HTTPHeaderDict
 
 def force_authenticate(
-    request: Request, user: Optional[Union[AnonymousUser, AbstractBaseUser]] = ..., token: Optional[Token] = ...
+    request: Request, user: AnonymousUser | AbstractBaseUser | None = ..., token: Token | None = ...
 ) -> None: ...
 
 class HeaderDict(HTTPHeaderDict):
@@ -54,7 +55,7 @@ class APIRequestFactory(DjangoRequestFactory):
     def get(  # type: ignore [override]
         self,
         path: str,
-        data: Optional[Union[Mapping[str, Any], str]] = ...,
+        data: Mapping[str, Any] | str | None = ...,
         secure: bool = ...,
         *,
         QUERY_STRING: str = ...,
@@ -64,8 +65,8 @@ class APIRequestFactory(DjangoRequestFactory):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
         **extra: str
@@ -74,8 +75,8 @@ class APIRequestFactory(DjangoRequestFactory):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
         **extra: str
@@ -84,8 +85,8 @@ class APIRequestFactory(DjangoRequestFactory):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
         **extra: str
@@ -94,8 +95,8 @@ class APIRequestFactory(DjangoRequestFactory):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
         **extra: str
@@ -104,8 +105,8 @@ class APIRequestFactory(DjangoRequestFactory):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[Any] = ...,
+        format: str | None = ...,
+        content_type: Any | None = ...,
         *,
         QUERY_STRING: str = ...,
         **extra: str
@@ -129,12 +130,12 @@ class ForceAuthClientHandler(ClientHandler):
 class APIClient(APIRequestFactory, DjangoClient):
     handler: Any = ...
     def credentials(self, **kwargs: Any) -> Any: ...
-    def force_authenticate(self, user: Optional[Any] = ..., token: Optional[Token] = ...) -> None: ...
+    def force_authenticate(self, user: Any | None = ..., token: Token | None = ...) -> None: ...
     def request(self, **kwargs: Any) -> Response: ...  # type: ignore[override]
     def get(  # type: ignore [override]
         self,
         path: str,
-        data: Optional[Union[Dict[str, Any], str]] = ...,
+        data: dict[str, Any] | str | None = ...,
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
@@ -144,8 +145,8 @@ class APIClient(APIRequestFactory, DjangoClient):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
@@ -155,8 +156,8 @@ class APIClient(APIRequestFactory, DjangoClient):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
@@ -166,8 +167,8 @@ class APIClient(APIRequestFactory, DjangoClient):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
@@ -177,8 +178,8 @@ class APIClient(APIRequestFactory, DjangoClient):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
@@ -188,8 +189,8 @@ class APIClient(APIRequestFactory, DjangoClient):
         self,
         path: str,
         data: _RequestData = ...,
-        format: Optional[str] = ...,
-        content_type: Optional[str] = ...,
+        format: str | None = ...,
+        content_type: str | None = ...,
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,

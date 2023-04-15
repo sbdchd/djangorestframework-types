@@ -1,14 +1,10 @@
+from collections.abc import Callable, Mapping, Sequence
 from typing import (
     Any,
-    Callable,
-    Dict,
-    List,
-    Mapping,
+    Literal,
     Optional,
-    Sequence,
-    Type,
+    Protocol,
     TypeVar,
-    Union,
 )
 
 from django.db.models import QuerySet
@@ -21,9 +17,8 @@ from rest_framework.renderers import BaseRenderer
 from rest_framework.schemas.inspectors import ViewInspector
 from rest_framework.serializers import BaseSerializer
 from rest_framework.throttling import BaseThrottle
-from typing_extensions import Literal, Protocol
 
-class MethodMapper(Dict[str, Any]):
+class MethodMapper(dict[str, Any]):
     def __init__(self, action: Callable[..., Any], methods: Sequence[str]) -> None: ...
     def _map(self, method: str, func: Callable[..., Any]) -> Callable[..., Any]: ...
     def get(self, func: Callable[..., Any]) -> Callable[..., Any]: ...  # type: ignore
@@ -35,36 +30,35 @@ class MethodMapper(Dict[str, Any]):
     def options(self, func: Callable[..., Any]) -> Callable[..., Any]: ...
     def trace(self, func: Callable[..., Any]) -> Callable[..., Any]: ...
 
-_LOWER_CASE_HTTP_VERBS = List[
-    Union[
-        Literal["get"],
-        Literal["post"],
-        Literal["delete"],
-        Literal["put"],
-        Literal["patch"],
-        Literal["trace"],
-        Literal["options"],
-    ]
+_LOWER_CASE_HTTP_VERBS = list[
+    Literal["get"]
+    | Literal["post"]
+    | Literal["delete"]
+    | Literal["put"]
+    | Literal["patch"]
+    | Literal["trace"]
+    | Literal["options"]
 ]
 
 _MIXED_CASE_HTTP_VERBS = Sequence[
-    Union[
-        Literal["GET"],
-        Literal["POST"],
-        Literal["DELETE"],
-        Literal["PUT"],
-        Literal["PATCH"],
-        Literal["TRACE"],
-        Literal["OPTIONS"],
-        Literal["get"],
-        Literal["post"],
-        Literal["delete"],
-        Literal["put"],
-        Literal["patch"],
-        Literal["trace"],
-        Literal["options"],
-    ]
+    Literal["GET"]
+    | Literal["POST"]
+    | Literal["DELETE"]
+    | Literal["PUT"]
+    | Literal["PATCH"]
+    | Literal["TRACE"]
+    | Literal["OPTIONS"]
+    | Literal["get"]
+    | Literal["post"]
+    | Literal["delete"]
+    | Literal["put"]
+    | Literal["patch"]
+    | Literal["trace"]
+    | Literal["options"]
 ]
+
+_CallableViewHandler = Callable[..., HttpResponseBase]
+_F = TypeVar("_F", bound=_CallableViewHandler)
 
 class ViewSetAction(Protocol[_F]):
     detail: bool
@@ -75,57 +69,53 @@ class ViewSetAction(Protocol[_F]):
     mapping: MethodMapper
     __call__: _F
 
-_CallableViewHandler = Callable[..., HttpResponseBase]
-
-_F = TypeVar("_F", bound=_CallableViewHandler)
-
 # TODO(sbdchd): update these to return a Protocol with the property that gets
 # attached along with __call__ set to the func
 
-def api_view(http_method_names: Optional[_MIXED_CASE_HTTP_VERBS] = ...) -> Callable[[_F], _F]: ...
+def api_view(http_method_names: _MIXED_CASE_HTTP_VERBS | None = ...) -> Callable[[_F], _F]: ...
 
-_RenderClassesParam = Sequence[Type[BaseRenderer]]
+_RenderClassesParam = Sequence[type[BaseRenderer]]
 
 def renderer_classes(renderer_classes: _RenderClassesParam) -> Callable[[_F], _F]: ...
 
-_ParserClassesParam = Sequence[Type[BaseParser]]
+_ParserClassesParam = Sequence[type[BaseParser]]
 
 def parser_classes(parser_classes: _ParserClassesParam) -> Callable[[_F], _F]: ...
 
-_AuthClassesParam = Sequence[Type[BaseAuthentication]]
+_AuthClassesParam = Sequence[type[BaseAuthentication]]
 
 def authentication_classes(authentication_classes: _AuthClassesParam) -> Callable[[_F], _F]: ...
 
-_ThrottleClassesParam = Sequence[Type[BaseThrottle]]
+_ThrottleClassesParam = Sequence[type[BaseThrottle]]
 
 def throttle_classes(throttle_classes: _ThrottleClassesParam) -> Callable[[_F], _F]: ...
 
 # probably a bug
-_PermClassesParam = Sequence[Type[_PermissionClass]]  # type: ignore [misc]
+_PermClassesParam = Sequence[type[_PermissionClass]]  # type: ignore [misc]
 
 def permission_classes(permission_classes: _PermClassesParam) -> Callable[[_F], _F]: ...
 
-_SchemaClassesParam = Optional[Type[ViewInspector]]
+_SchemaClassesParam = Optional[type[ViewInspector]]
 
 def schema(view_inspector: _SchemaClassesParam) -> Callable[[_F], _F]: ...
 def action(
-    methods: Optional[_MIXED_CASE_HTTP_VERBS] = ...,
+    methods: _MIXED_CASE_HTTP_VERBS | None = ...,
     detail: bool = ...,
-    url_path: Optional[str] = ...,
-    url_name: Optional[str] = ...,
-    suffix: Optional[str] = ...,
-    name: Optional[str] = ...,
+    url_path: str | None = ...,
+    url_name: str | None = ...,
+    suffix: str | None = ...,
+    name: str | None = ...,
     # **kwargs expanded, might have missed a few
-    serializer_class: Type[BaseSerializer] = ...,
+    serializer_class: type[BaseSerializer] = ...,
     permission_classes: _PermClassesParam = ...,
     throttle_classes: _ThrottleClassesParam = ...,
     schema: _SchemaClassesParam = ...,
     authentication_classes: _AuthClassesParam = ...,
     renderer_classes: _RenderClassesParam = ...,
     parser_classes: _ParserClassesParam = ...,
-    filter_backends: Sequence[Type[_FilterBackendProtocol]] = ...,
+    filter_backends: Sequence[type[_FilterBackendProtocol]] = ...,
     lookup_field: str = ...,
-    lookup_url_kwarg: Optional[str] = ...,
+    lookup_url_kwarg: str | None = ...,
     queryset: QuerySet[Any] = ...,
     **kwargs: Any,
 ) -> Callable[[_F], _F]: ...

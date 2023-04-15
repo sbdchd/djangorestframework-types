@@ -1,4 +1,5 @@
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 def unbool(element: Any, true: Any = ..., false: Any = ...) -> Any: ...
 def uniq(container: Iterable[object]) -> bool: ...
