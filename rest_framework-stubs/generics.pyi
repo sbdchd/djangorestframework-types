@@ -1,10 +1,9 @@
 from collections.abc import Sequence
-from typing import Any, TypeVar, overload
+from typing import Any, TypeVar
 
 from django.db.models import Manager, Model
 from django.db.models.query import QuerySet
 from django.http.response import HttpResponse
-from mongoengine import QuerySet as MongoQuerySet
 from rest_framework import mixins, views
 from rest_framework.filters import _FilterBackendProtocol
 from rest_framework.pagination import BasePagination
@@ -18,10 +17,8 @@ def get_object_or_404(
     queryset: type[_MT_co] | Manager[_MT_co] | QuerySet[_MT_co], *filter_args: Any, **filter_kwargs: Any
 ) -> _MT_co: ...
 
-_T = TypeVar("_T")
 _D = TypeVar("_D", bound=Model)
-
-_Q = TypeVar("_Q", bound=QuerySet[Any] | MongoQuerySet[Any])
+_Q = TypeVar("_Q", bound=QuerySet[Any])
 
 class GenericAPIView(views.APIView):
     serializer_class: type[BaseSerializer] | None = ...
@@ -34,14 +31,10 @@ class GenericAPIView(views.APIView):
     def get_serializer_class(self) -> type[BaseSerializer]: ...
     def get_serializer_context(self) -> dict[str, Any]: ...
     def filter_queryset(self, queryset: _Q) -> _Q: ...
-    @property
     def paginator(self) -> BasePagination | None: ...
-    @overload
     def paginate_queryset(self, queryset: QuerySet[_D]) -> list[_D] | None: ...
-    @overload
-    def paginate_queryset(self, queryset: MongoQuerySet[_T]) -> list[_T] | None: ...
     def get_paginated_response(self, data: Any) -> Response: ...
-    def get_queryset(self) -> QuerySet[_MT_co] | MongoQuerySet[_T]: ...
+    def get_queryset(self) -> QuerySet[_MT_co]: ...
 
 class CreateAPIView(mixins.CreateModelMixin, GenericAPIView):
     def post(self, request: Request, *args: Any, **kwargs: Any) -> HttpResponse: ...

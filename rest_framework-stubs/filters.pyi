@@ -6,17 +6,14 @@ from typing import (
 )
 
 from django.db.models import Model, QuerySet
-from mongoengine import QuerySet as MongoQuerySet
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
 _MT = TypeVar("_MT", bound=Model)
-
-_QS = QuerySet[Any] | MongoQuerySet[Any]
-_Q = TypeVar("_Q", bound=_QS)
+_Q = TypeVar("_Q", bound=QuerySet[Any])
 
 class _FilterBackendProtocol(Protocol):
-    def filter_queryset(self, request: Any, queryset: _QS, view: APIView) -> _QS: ...
+    def filter_queryset(self, request: Any, queryset: _Q, view: APIView) -> _Q: ...
 
 class BaseFilterBackend:
     def filter_queryset(self, request: Any, queryset: _Q, view: APIView) -> _Q: ...

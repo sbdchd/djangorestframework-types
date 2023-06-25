@@ -20,7 +20,6 @@ python = "^3.7"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.19"
-mongo-types = "^0.7.5"
 django-types = "^0.3.1"
 django = "^3.1"
 flake8 = "^3.8"
