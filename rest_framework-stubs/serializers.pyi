@@ -11,6 +11,7 @@ from typing import (
     Literal,
     NoReturn,
 )
+from typing_extensions import Self
 
 from django.db import models
 from django.db.models import Manager, QuerySet
@@ -82,7 +83,7 @@ class BaseSerializer(Field[Any, Any, Any, Any]):
     instance: Any | None
     initial_data: Any
     _context: dict[str, Any]
-    def __new__(cls, *args: Any, **kwargs: Any) -> BaseSerializer: ...
+    def __new__(cls, *args: Any, **kwargs: Any) -> Self: ...
     def __class_getitem__(cls, *args: Any, **kwargs: Any) -> Any: ...
     def __init__(
         self,

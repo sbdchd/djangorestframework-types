@@ -17,6 +17,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
+typing_extensions = { version = "^4.6", python = "<3.11" }
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.19"
