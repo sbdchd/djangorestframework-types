@@ -11,7 +11,7 @@ else
     ./.venv/bin/ruff . --fix
 fi
 
-./node_modules/.bin/pyright tests typings
+./.venv/bin/pyright tests typings
 
 # type check code
 ./.venv/bin/mypy tests typings
