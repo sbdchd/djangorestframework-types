@@ -1,5 +1,8 @@
-# Taken from: https://jacobian.org/til/github-actions-poetry/
-on: push
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   test:
