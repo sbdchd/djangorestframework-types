@@ -90,8 +90,7 @@ _ThrottleClassesParam = Sequence[type[BaseThrottle]]
 
 def throttle_classes(throttle_classes: _ThrottleClassesParam) -> Callable[[_F], _F]: ...
 
-# probably a bug
-_PermClassesParam = Sequence[type[_PermissionClass]]  # type: ignore [misc]
+_PermClassesParam = Sequence[_PermissionClass]
 
 def permission_classes(permission_classes: _PermClassesParam) -> Callable[[_F], _F]: ...
 
