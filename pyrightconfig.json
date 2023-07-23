@@ -7,7 +7,7 @@
   "reportUntypedBaseClass": false,
   "reportMissingImports": false,
   "reportUnknownVariableType": false,
-	"reportUnusedImport": false,
+  "reportUnusedImport": false,
   "reportInvalidTypeVarUse": false,
   "reportGeneralTypeIssues": false,
   "reportUnknownArgumentType": false,
