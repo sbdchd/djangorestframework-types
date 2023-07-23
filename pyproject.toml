@@ -82,7 +82,7 @@ unfixable = [
     "ERA001",
 ] # we want to check ourselves before we delete commented out code.
 update-check = false
-target-version = "py311"
+target-version = "py38"
 
 [tool.ruff.flake8-tidy-imports]
 # Disallow all relative imports.

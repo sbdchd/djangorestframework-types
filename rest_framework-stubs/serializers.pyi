@@ -11,7 +11,6 @@ from typing import (
     Literal,
     NoReturn,
 )
-from typing_extensions import Self
 
 from django.db import models
 from django.db.models import Manager, QuerySet
@@ -73,6 +72,7 @@ from rest_framework.relations import SlugRelatedField as SlugRelatedField
 from rest_framework.relations import StringRelatedField as StringRelatedField
 from rest_framework.utils.model_meta import FieldInfo, RelationInfo
 from rest_framework.utils.serializer_helpers import BoundField, ReturnList
+from typing_extensions import Self
 
 LIST_SERIALIZER_KWARGS: Sequence[str] = ...
 ALL_FIELDS: str = ...
