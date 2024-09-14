@@ -198,6 +198,7 @@ class ModelSerializer(Serializer, BaseSerializer):
         exclude: Sequence[str] | None
         depth: int | None
         extra_kwargs: dict[str, dict[str, Any]]
+
     def __init__(
         self,
         instance: None | Any | Sequence[Any] | QuerySet[Any] | Manager[Any] = ...,

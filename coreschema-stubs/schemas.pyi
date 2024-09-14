@@ -43,7 +43,7 @@ class Object(Schema):
         min_properties: Any | None = ...,
         pattern_properties: Any | None = ...,
         additional_properties: bool = ...,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None: ...
     def validate(self, value: Any, context: Any | None = ...) -> list[Error]: ...
 
@@ -61,7 +61,7 @@ class Array(Schema):
         min_items: Any | None = ...,
         unique_items: bool = ...,
         additional_items: bool = ...,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None: ...
     def validate(self, value: Any, context: Any | None = ...) -> list[Error]: ...
 
@@ -80,7 +80,7 @@ class Number(Schema):
         exclusive_minimum: bool = ...,
         exclusive_maximum: bool = ...,
         multiple_of: int | None = ...,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None: ...
     def validate(self, value: Any, context: Any | None = ...) -> list[Error]: ...
 
@@ -101,7 +101,7 @@ class String(Schema):
         min_length: int | None = ...,
         pattern: str | None = ...,
         format: Any | None = ...,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None: ...
     def validate(self, value: Any, context: Any | None = ...) -> list[Error]: ...
 
