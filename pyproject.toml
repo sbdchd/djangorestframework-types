@@ -16,7 +16,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 typing_extensions = { version = "^4.6", python = "<3.11" }
 
 [tool.poetry.group.dev.dependencies]
@@ -27,16 +27,15 @@ flake8 = "^3.8"
 flake8-pyi = "^20.10"
 mypy = "^1.4"
 isort = "5.10.1"
-black = "^22.10.0"
 types-requests = "^2.28.11"
-ruff = "^0.0.261"
+ruff = "^0.6.5"
 pyright = "^1.1.318"
 
-[tool.black]
-line-length = 120
-include = '\.pyi?$'
-
 [tool.ruff]
+target-version = "py38"
+line-length = 120
+
+[tool.ruff.lint]
 select = [
     "E",
     "F",
@@ -78,14 +77,13 @@ ignore = [
     "N818",   # some exceptions have bad names
     "N801",   # some class names have bad names
     "ERA001", # false positives
+    "UP007",  # We're using Union/Optional here.
 ]
 unfixable = [
     "ERA001",
 ] # we want to check ourselves before we delete commented out code.
-update-check = false
-target-version = "py38"
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 # Disallow all relative imports.
 ban-relative-imports = "all"
 

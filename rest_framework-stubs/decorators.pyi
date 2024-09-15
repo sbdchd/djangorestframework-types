@@ -10,7 +10,7 @@ from typing import (
 from django.db.models import QuerySet
 from django.http.response import HttpResponseBase
 from rest_framework.authentication import BaseAuthentication
-from rest_framework.filters import _FilterBackendProtocol
+from rest_framework.filters import FilterBackendProtocol
 from rest_framework.parsers import BaseParser
 from rest_framework.permissions import _PermissionClass
 from rest_framework.renderers import BaseRenderer
@@ -112,7 +112,7 @@ def action(
     authentication_classes: _AuthClassesParam = ...,
     renderer_classes: _RenderClassesParam = ...,
     parser_classes: _ParserClassesParam = ...,
-    filter_backends: Sequence[type[_FilterBackendProtocol]] = ...,
+    filter_backends: Sequence[type[FilterBackendProtocol]] = ...,
     lookup_field: str = ...,
     lookup_url_kwarg: str | None = ...,
     queryset: QuerySet[Any] = ...,

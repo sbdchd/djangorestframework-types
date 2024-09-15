@@ -59,7 +59,7 @@ class APIRequestFactory(DjangoRequestFactory):
         secure: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
     def post(  # type: ignore [override]
         self,
@@ -69,7 +69,7 @@ class APIRequestFactory(DjangoRequestFactory):
         content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
     def put(  # type: ignore [override]
         self,
@@ -79,7 +79,7 @@ class APIRequestFactory(DjangoRequestFactory):
         content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
     def patch(  # type: ignore [override]
         self,
@@ -89,7 +89,7 @@ class APIRequestFactory(DjangoRequestFactory):
         content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
     def delete(  # type: ignore [override]
         self,
@@ -99,7 +99,7 @@ class APIRequestFactory(DjangoRequestFactory):
         content_type: str | None = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
     def options(  # type: ignore [override]
         self,
@@ -109,7 +109,7 @@ class APIRequestFactory(DjangoRequestFactory):
         content_type: Any | None = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
     def generic(  # type: ignore[override]
         self,
@@ -120,7 +120,7 @@ class APIRequestFactory(DjangoRequestFactory):
         secure: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Request: ...
 
 class ForceAuthClientHandler(ClientHandler):
@@ -139,7 +139,7 @@ class APIClient(APIRequestFactory, DjangoClient):  # pyright: ignore[reportIncom
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Response: ...
     def post(  # type: ignore [override]
         self,
@@ -150,7 +150,7 @@ class APIClient(APIRequestFactory, DjangoClient):  # pyright: ignore[reportIncom
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Response: ...
     def put(  # type: ignore [override]
         self,
@@ -161,7 +161,7 @@ class APIClient(APIRequestFactory, DjangoClient):  # pyright: ignore[reportIncom
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Response: ...
     def patch(  # type: ignore [override]
         self,
@@ -172,7 +172,7 @@ class APIClient(APIRequestFactory, DjangoClient):  # pyright: ignore[reportIncom
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Response: ...
     def delete(  # type: ignore [override]
         self,
@@ -183,7 +183,7 @@ class APIClient(APIRequestFactory, DjangoClient):  # pyright: ignore[reportIncom
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Response: ...
     def options(  # type: ignore [override]
         self,
@@ -194,7 +194,7 @@ class APIClient(APIRequestFactory, DjangoClient):  # pyright: ignore[reportIncom
         follow: bool = ...,
         *,
         QUERY_STRING: str = ...,
-        **extra: str
+        **extra: str,
     ) -> Response: ...
     def logout(self) -> None: ...
 
