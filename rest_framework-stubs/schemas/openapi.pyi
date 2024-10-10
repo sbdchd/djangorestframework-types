@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import Any, TypedDict
+from typing import Any, TypedDict, Optional
 
 from rest_framework.fields import Field
 from rest_framework.pagination import BasePagination
@@ -11,16 +11,29 @@ from rest_framework.serializers import BaseSerializer
 # OpenAPI requires its own typings. Below are minimal typing.
 # TODO: evaluate using a 3rd party typing package for this, e.g.: https://github.com/meeshkan/openapi-typed
 
-class DRFOpenAPIInfo(TypedDict, total=False):
-    title: str
-    version: str
-    description: str
+class DRFOpenAPIInfoContact(TypedDict):
+        name: Optional[str]
+        url: Optional[str]
+        email: Optional[str]
 
-class DRFOpenAPISchema(TypedDict, total=False):
+class DRFOpenAPIInfoLicense(TypedDict):
+    name: str
+    url: Optional[str]
+
+class DRFOpenAPIInfo(TypedDict):
+    title: str
+    description: Optional[str]
+    termsOfService: Optional[str]
+    contact: Optional[DRFOpenAPIInfoContact]
+    license: Optional[DRFOpenAPIInfoLicense]
+    version: str
+
+class DRFOpenAPISchema(TypedDict):
     openapi: str
     info: DRFOpenAPIInfo
     paths: dict[str, dict[str, Any]]
     components: dict[str, dict[str, Any]]
+    security: Optional[list[dict[str, list[str]]]]
 
 class SchemaGenerator(BaseSchemaGenerator):
     def get_info(self) -> DRFOpenAPIInfo: ...
