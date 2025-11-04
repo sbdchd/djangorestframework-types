@@ -1,7 +1,8 @@
 from collections import OrderedDict
 from collections.abc import Callable
-from typing import Any
+from typing import Any, TypeVar
 
+from django.db.models import Model
 from django.http.response import HttpResponse
 from rest_framework import generics, mixins, views
 from rest_framework.decorators import ViewSetAction
@@ -34,14 +35,16 @@ class ViewSetMixin:
     def get_extra_actions(cls) -> list[_ViewFunc]: ...
     def get_extra_action_url_map(self) -> OrderedDict[str, str]: ...
 
+_MT_co = TypeVar("_MT_co", bound=Model, covariant=True)
+
 class ViewSet(ViewSetMixin, views.APIView): ...
-class GenericViewSet(ViewSetMixin, generics.GenericAPIView): ...
-class ReadOnlyModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet): ...
+class GenericViewSet(ViewSetMixin, generics.GenericAPIView[_MT_co]): ...
+class ReadOnlyModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet[_MT_co]): ...
 class ModelViewSet(
     mixins.CreateModelMixin,
     mixins.RetrieveModelMixin,
     mixins.UpdateModelMixin,
     mixins.DestroyModelMixin,
     mixins.ListModelMixin,
-    GenericViewSet,
+    GenericViewSet[_MT_co],
 ): ...
