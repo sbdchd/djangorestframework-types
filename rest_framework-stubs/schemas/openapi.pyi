@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import Any, TypedDict
+from typing import Any, TypedDict, Optional
 
 from rest_framework.fields import Field
 from rest_framework.pagination import BasePagination
@@ -25,7 +25,7 @@ class DRFOpenAPISchema(TypedDict, total=False):
 class SchemaGenerator(BaseSchemaGenerator):
     def get_info(self) -> DRFOpenAPIInfo: ...
     def check_duplicate_operation_id(self, paths: dict[str, dict[str, Any]]) -> None: ...
-    def get_schema(self, request: Request = ..., public: bool = ...) -> DRFOpenAPISchema: ...  # type: ignore[override]
+    def get_schema(self, request: Optional[Request] = ..., public: bool = ...) -> DRFOpenAPISchema: ...  # type: ignore[override]
 
 class AutoSchema(ViewInspector):
     operation_id_base: str | None = ...
